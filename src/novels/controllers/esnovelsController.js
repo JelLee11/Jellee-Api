@@ -140,7 +140,8 @@ async function getFavourites(req, res) {
       message: "Failed to fetch data from EsNovels!"
     });
   }
-}async function getNovelInfo(req, res) {
+}
+async function getNovelInfo(req, res) {
   const id = req.query.id;
 
   // Validate id
@@ -171,11 +172,11 @@ async function getFavourites(req, res) {
       type: novel.type || "Unknown type",
       genres: novel.genre ? novel.genre.split(",").map(genre => genre.trim()) : [],
       synopsis: novel.synopsis || "No synopsis available",
-      author: novel.author || "Unknown author",
+      author: novel.authors || "Unknown author",
       artist: novel.artist || "Unknown artist",
       publisher: novel.publisher || "Unknown publisher",
       translation: novel.translationGroup || "Unknown translation group",
-      totalVolumes: novel.volumeCounts || "Not specified",
+      totalVolumes: novel.volumesCount || "Not specified",
       volumes: novel.volumes || [],
     };
 
@@ -193,7 +194,6 @@ async function getFavourites(req, res) {
     });
   }
 }
-
 async function getSearchQuery(req, res) {
   const query = req.query.query || "Hero";
 
